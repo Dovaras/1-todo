@@ -7,7 +7,9 @@
     "dev": "live-server --port=3000",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "keywords": [
+    "todo"
+  ],
   "author": "Arūnas Dovainis",
   "license": "Bit",
   "devDependencies": {
