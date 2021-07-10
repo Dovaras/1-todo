@@ -7,11 +7,14 @@ class Form {
 
     init() {
         // patikrinti, ar validus selector
-        if (this.isValidSelector()) {
-            return true;
+        if (!this.isValidSelector() ||
+            !this.findTargetElement()) {
+            return false;
         }
 
         this.findTargetElement();
+
+        this.render();
     }
 
     isValidSelector() {
@@ -24,12 +27,37 @@ class Form {
     }
 
     findTargetElement() {
-        const DOM = document.querySelector(this.selector);
+        this.DOM = document.querySelector(this.selector);
 
-        if (!DOM) {
+        if (!this.DOM) {
             console.error('ERROR: pagal pateikta selector, elementas neegzistuoja');
             return false;
         }
+
+        return true;
+    }
+
+    render() {
+        const HTML = `<form class="form">
+        <div class="form-row">
+            <textarea placeholder="Message..."></textarea>
+        </div>
+        <div class="form-row">
+            <input type="color">
+        </div>
+        <div class="form-row">
+            <input type="date">
+        </div>
+        <div class="form-row">
+            <input type="checkbox"><span>Task is completed?</span>
+        </div>
+        <div class="form-row">
+            <button class="save" type="submit">Save</button>
+            <button type="reset">Reset</button>
+        </div>
+    </form>`;
+    // innerHTML
+    this.DOM.insertAdjacentHTML('afterbegin', HTML);
     }
 }
 
